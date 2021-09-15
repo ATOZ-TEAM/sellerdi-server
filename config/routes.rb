@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api, defaults: { format: :json } do
+    namespace :exchange do
+      scope controller: :read do
+        get '', action: 'all', as: 'index'
+        get ':base_currency/:compare_currency_list', action: 'compare', as: 'compare'
+      end
+    end
+  end
 end

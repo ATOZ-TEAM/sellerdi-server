@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exchange_info_request_log: one
+  symbol: MyString
+  name: MyString
+  price: 1.5
+  date: 2021-09-15 16:47:23
+  timestamp: 1
+  kr: MyString
+  en: MyString
+  jp: MyString
+
+two:
+  exchange_info_request_log: two
+  symbol: MyString
+  name: MyString
+  price: 1.5
+  date: 2021-09-15 16:47:23
+  timestamp: 1
+  kr: MyString
+  en: MyString
+  jp: MyString
