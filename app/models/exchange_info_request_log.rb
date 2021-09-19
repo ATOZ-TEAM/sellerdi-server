@@ -1,7 +1,9 @@
 class ExchangeInfoRequestLog < ApplicationRecord
   has_many :exchange_infos
+  accepts_nested_attributes_for :exchange_infos
 
   validates_presence_of :requested_at
+  make_default_value_of_column :requested_at, -> { Time.zone.now }
 
   class << self
     def create_with_new_data

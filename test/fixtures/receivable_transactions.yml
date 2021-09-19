@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  receivable_document: one
+  start_currency: MyString
+  start_amount: 1.5
+  final_currency: MyString
+  final_amount: 1.5
+  currency_ratio: 1.5
+
+two:
+  receivable_document: two
+  start_currency: MyString
+  start_amount: 1.5
+  final_currency: MyString
+  final_amount: 1.5
+  currency_ratio: 1.5

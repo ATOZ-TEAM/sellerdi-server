@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  first_item_img: MyString
+  date: 2021-09-16 17:24:23
+  order_id: MyString
+  transaction_data: MyText
+  status_message: MyString
+
+two:
+  shop: two
+  first_item_img: MyString
+  date: 2021-09-16 17:24:23
+  order_id: MyString
+  transaction_data: MyText
+  status_message: MyString

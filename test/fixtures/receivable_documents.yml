@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  bank_account: one
+  released_at: 2021-09-16 17:56:47
+  received_bank_account: MyText
+  order_count: 1
+  order_amount_sum: 1.5
+
+two:
+  shop: two
+  bank_account: two
+  released_at: 2021-09-16 17:56:47
+  received_bank_account: MyText
+  order_count: 1
+  order_amount_sum: 1.5
