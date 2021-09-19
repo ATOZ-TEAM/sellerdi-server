@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: exchange_info_request_logs
+#
+#  id           :bigint           not null, primary key
+#  requested_at :datetime
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 class ExchangeInfoRequestLog < ApplicationRecord
   has_many :exchange_infos
   accepts_nested_attributes_for :exchange_infos

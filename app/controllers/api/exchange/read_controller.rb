@@ -2,12 +2,7 @@ module Api
   module Exchange
     class ReadController < BaseController
       def all
-        last_request_log = ExchangeInfoRequestLog.last
-
-        unless last_request_log
-          last_request_log = ExchangeService::UpdateService.call
-        end
-
+        last_request_log = ExchangeService::UpdateService.call
         @exchange_infos = last_request_log.exchange_infos.where.not(kr: nil).where.not(en: nil)
       end
 
