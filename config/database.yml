@@ -48,8 +48,10 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+#  sellerdi-staging-2
+# id sellerdi
+# pw wecandoit0613!
+# db sellerdi_staging
 production:
   <<: *default
-  database: selper_server_production
-  username: selper_server
-  password: <%= ENV['SELPER_SERVER_DATABASE_PASSWORD'] %>
+  database: sellerdi_staging
