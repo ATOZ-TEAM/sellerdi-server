@@ -8,6 +8,12 @@
 
 seed_src = Rails.application.credentials.dig(:seed)
 
+# [환율 데이터]
+#
+# 첫 번째 [환율 데이터 조회 요청]을 생성합니다.
+# 170여개 국가의 실시간 환율 정보를 함께 불러와 저장합니다.
+ExchangeService::UpdateService.call
+
 # [마켓 데이터]
 #
 # 쇼피 - 말/싱/대/배/태/필
@@ -113,4 +119,23 @@ shopee_sg_shop.receivable_documents.create(released_at: '2021-09-14 14:37 KST').
     { first_item_img: 'https://cf.shopee.sg/file/e606d6c8f2c10e8ddade9e9d21504b3c_tn', order_id: '210828RJRYH6JA', date: '2021-08-28', transaction_data: { symbol: '$', amount: 45.63 }, status_message: 'Buyer confirmed order received' },
   ])
   receivable_document.issue!(maturity_date: '2012-09-23', coupon_rate: 0.0)
+end
+
+# 말레이 3차 정산
+shopee_my_shop.receivable_documents.create(released_at: '2021-09-25 02:32 KST').tap do |receivable_document|
+  receivable_document.orders = shopee_my_shop.orders.create([
+    { first_item_img: "https://cf.shopee.com.my/file/9f3a3b447027ff4b6da3bcbd7be9e719_tn", order_id: "2109149BFS2PSA", date: '2021-09-14', transaction_data: { symbol: "RM", amount: 79.74 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ad98974f8c35a71e3e973689ed94fdc7_tn", order_id: "210916DUN2X51M", date: '2021-09-16', transaction_data: { symbol: "RM", amount: 79.91 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/a3c393b4c326e3a4740915ac4031b7f3_tn", order_id: "210917ETNFYSHE", date: '2021-09-17', transaction_data: { symbol: "RM", amount: 389.39 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ad98974f8c35a71e3e973689ed94fdc7_tn", order_id: "2109111S46EGFU", date: '2021-09-11', transaction_data: { symbol: "RM", amount: 79.91 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ac7a1f8c97cf9ef98f547f8184a70878_tn", order_id: "210903A1TC5SB0", date: '2021-09-03', transaction_data: { symbol: "RM", amount: 79.74 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ac7a1f8c97cf9ef98f547f8184a70878_tn", order_id: "210904D4A252A8", date: '2021-09-04', transaction_data: { symbol: "RM", amount: 160.22 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ad98974f8c35a71e3e973689ed94fdc7_tn", order_id: "210906J8GUTHD1", date: '2021-09-06', transaction_data: { symbol: "RM", amount: 159.92 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ac7a1f8c97cf9ef98f547f8184a70878_tn", order_id: "210906J65GS9YX", date: '2021-09-06', transaction_data: { symbol: "RM", amount: 79.91 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ad98974f8c35a71e3e973689ed94fdc7_tn", order_id: "210909RT9Q6E58", date: '2021-09-09', transaction_data: { symbol: "RM", amount: 79.91 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/3c89ce3cd8adacb86365a97ab5fd57f2_tn", order_id: "210908P6YBHXAS", date: '2021-09-08', transaction_data: { symbol: "RM", amount: 2320.12 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/9f3a3b447027ff4b6da3bcbd7be9e719_tn", order_id: "210909RXF7CCFE", date: '2021-09-09', transaction_data: { symbol: "RM", amount: 79.74 }, status_message: "Buyer confirmed order received" },
+    { first_item_img: "https://cf.shopee.com.my/file/ac7a1f8c97cf9ef98f547f8184a70878_tn", order_id: "210909S0J6P72B", date: '2021-09-09', transaction_data: { symbol: "RM", amount: 79.91 }, status_message: "Buyer confirmed order received" }
+  ])
+  receivable_document.issue!(maturity_date: '2021-10-14', coupon_rate: 0.0)
 end

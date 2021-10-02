@@ -20,7 +20,7 @@
 #
 class OrderOfReceivableDocument < ApplicationRecord
   belongs_to :order, optional: true
-  belongs_to :receivable_document
+  belongs_to :receivable_document, counter_cache: :order_count
 
   delegate :amount, to: :order
 

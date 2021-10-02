@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   namespace :api, defaults: { format: :json } do
+    namespace :users do
+      scope controller: :sessions do
+        post 'login', action: :create
+        delete 'logout', action: :destroy
+      end
+    end
+
     namespace :exchange do
       scope controller: :read do
         get '', action: 'all', as: 'index'
@@ -14,8 +21,14 @@ Rails.application.routes.draw do
     end
 
     resources :orders
-    resources :shops do
-      resources :orders
+
+    scope only: %i[index show create update destroy] do
+      resources :users, only: [] do
+        resources :shops do
+          resources :orders
+          resources :receivable_documents
+        end
+      end
     end
   end
 end
