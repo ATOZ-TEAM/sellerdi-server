@@ -8,7 +8,6 @@ json.extract! receivable_document, *[
   :order_count,
   :order_amount_sum,
   :orders,
-  :created_at,
-  :updated_at
 ]
-json.url api_user_shop_receivable_document_url(@user.id, @shop.id, receivable_document, format: :json)
+
+json_builder_timestamp(json, receivable_document, include_url: api_user_shop_receivable_document_url(@user.id, @shop.id, receivable_document, format: :json))
