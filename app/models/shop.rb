@@ -25,4 +25,8 @@ class Shop < ApplicationRecord
   belongs_to :market
   has_many :orders
   has_many :receivable_documents
+
+  def simple_name
+    market.title
+  end
 end

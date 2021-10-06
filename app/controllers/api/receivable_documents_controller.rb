@@ -16,17 +16,23 @@ module Api
 
     # POST /api/users/:user_id/shops/:shop_id/receivable_documents
     def create
-      @receivable_document = @receivable_documents.new(receivable_document_params)
+      @service = CreateReceivableDocumentService.new(@receivable_documents)
+      @receivable_document = @service.document
 
-      respond_to do |format|
-        if @receivable_document.save
-          format.html { redirect_to @receivable_document, notice: "Receivable document was successfully created." }
-          format.json { render :show, status: :created, location: @receivable_document }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @receivable_document.errors, status: :unprocessable_entity }
-        end
+      if @service.call(create_params)
+        render json: @receivable_document, status: :created
+      else
+        render json: @receivable_document.errors, status: :unprocessable_entity
       end
+      # respond_to do |format|
+      #   if @service.call(create_params)
+      #     format.html { redirect_to @receivable_document, notice: "Receivable document was successfully created." }
+      #     format.json { render :show, status: :created, location: @receivable_document }
+      #   else
+      #     format.html { render :new, status: :unprocessable_entity }
+      #     format.json { render json: @receivable_document.errors, status: :unprocessable_entity }
+      #   end
+      # end
     end
 
     # PATCH/PUT /api/users/:user_id/shops/:shop_id/receivable_documents/:id
@@ -72,6 +78,10 @@ module Api
     # Only allow a list of trusted parameters through.
     def receivable_document_params
       params.fetch(:receivable_document, {})
+    end
+
+    def create_params
+      params
     end
   end
 end

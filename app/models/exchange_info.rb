@@ -30,7 +30,7 @@ class ExchangeInfo < ApplicationRecord
   scope :find_by_recent_currency, ->(currency) { where(currency: currency).last }
 
   def self.ratio_between(base, final)
-    find_by_recent_currency(base).compare_with(final)
+    find_by_recent_currency(final).compare_with(base)
   end
 
   def compare_with(currency)

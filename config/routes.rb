@@ -31,4 +31,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  mount Avo::Engine, at: Avo.configuration.root_path
 end

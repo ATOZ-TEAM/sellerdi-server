@@ -44,4 +44,12 @@ class ReceivableDocument < ApplicationRecord
     # record bond information
     create_bond(maturity_date: maturity_date, coupon_rate: coupon_rate)
   end
+
+  def issue_reload!
+    # refresh captured transaction
+    captured_transaction.send(:align_data).save!
+
+    # refresh bond information
+    bond.send(:align_data).save!
+  end
 end

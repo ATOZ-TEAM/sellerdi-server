@@ -21,4 +21,8 @@
 class BankAccount < ApplicationRecord
   belongs_to :user
   has_many :receivable_documents, dependent: :nullify
+
+  def title
+    "#{bank_name} / #{holder_name} / #{account_num}"
+  end
 end
