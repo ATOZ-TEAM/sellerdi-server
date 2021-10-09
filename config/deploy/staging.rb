@@ -2,7 +2,7 @@
 # ======================
 
 set :ssh_host_name, ENV['SSH_HOST_NAME']
-set :ssh_user, ENV['ubuntu']
+set :ssh_user, ENV['SSH_USER_NAME']
 set :ssh_identity_file, "#{ENV['HOME']}/#{ENV['SSH_KEY_FILE']}"
 
 # Remote 서버에 대해 배포 환경변수 설정
