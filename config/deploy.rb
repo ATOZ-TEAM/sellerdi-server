@@ -1,3 +1,7 @@
+require 'dotenv'
+current_env = ARGV[0]
+Dotenv.load(".env.#{current_env}", '.env')
+
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
