@@ -27,7 +27,18 @@ set :pty, true
 
 # Default value for :linked_files is []
 # ~> config/deploy 의 각 배포 환경별로 정의
-append :linked_files, "config/database.yml", "config/master.key", "config/credentials/staging.key", "config/credentials/production.key"
+append :linked_files, *[
+  "config/database.yml",
+
+  # key files
+  "config/master.key",
+  "config/credentials/staging.key",
+  "config/credentials/production.key",
+
+  # dotenv files
+  ".env",
+  ".env.staging",
+]
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"

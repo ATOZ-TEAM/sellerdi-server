@@ -8,6 +8,7 @@ gem 'awesome_print'
 gem 'bundle-only'
 gem 'data_migrate'
 gem 'devise'
+gem 'dotenv-rails'
 gem 'faraday'
 gem 'ransack'
 

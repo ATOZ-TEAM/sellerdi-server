@@ -1,13 +1,9 @@
 # customized setup
 # ======================
 
-# 'config/credentials/staging.key' 때문에 공통정의 하지 않고 개별환경에서 정의한다.
-# append :linked_files, *%w[config/database.yml config/master.key config/credentials/staging.key]
-
-# AWS EC2 Ubuntu는 기본으로 아이디는 ubuntu 이다.
-set :ssh_host_name, "3.35.236.222"
-set :ssh_user, 'ubuntu'
-set :ssh_identity_file, "#{ENV['HOME']}/.ssh/pems/atoz-staging-keypair.cer"
+set :ssh_host_name, ENV['SSH_HOST_NAME']
+set :ssh_user, ENV['ubuntu']
+set :ssh_identity_file, "#{ENV['HOME']}/#{ENV['SSH_KEY_FILE']}"
 
 # Remote 서버에 대해 배포 환경변수 설정
 set :rails_env, "staging"
