@@ -20,5 +20,6 @@ module SelperServer
     # config.eager_load_paths << Rails.root.join("extras")
     config.eager_load_paths << Rails.root.join('app/services')
     config.eager_load_paths << Rails.root.join('app/serializers')
+    config.eager_load_paths << Rails.root.join('lib/modules')
   end
 end

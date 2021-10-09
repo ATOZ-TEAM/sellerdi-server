@@ -2,7 +2,7 @@
 # ======================
 
 # 'config/credentials/staging.key' 때문에 공통정의 하지 않고 개별환경에서 정의한다.
-append :linked_files, *%w[config/database.yml config/master.key config/credentials/staging.key]
+# append :linked_files, *%w[config/database.yml config/master.key config/credentials/staging.key]
 
 # AWS EC2 Ubuntu는 기본으로 아이디는 ubuntu 이다.
 set :ssh_host_name, "3.35.236.222"

@@ -1,5 +1,3 @@
-require_relative '../avo/base_resource'
-
 class UserResource < Avo::BaseResource
   self.sidebar_priority = 2
   self.sidebar_label = '회원 계정'
