@@ -10,8 +10,8 @@ class ShopResource < Avo::BaseResource
 
   field :id, as: :id, link_to_resource: true
   # add fields here
-  field :user, as: :belongs_to, name: '소유자'
-  field :market, as: :belongs_to, name: '대상 마켓플레이스'
+  field :user, as: :belongs_to #, name: '소유자'
+  field :market, as: :belongs_to #, name: '대상 마켓플레이스'
   field :account, as: :text, name: '관리계정 ID', link_to_resource: true
   field :password, as: :password, name: '관리계정 PW'
 
