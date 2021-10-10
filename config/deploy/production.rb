@@ -1,3 +1,15 @@
+# customized setup
+# ======================
+
+set :ssh_host_name, ENV['SSH_HOST_NAME']
+set :ssh_user, ENV['SSH_USER_NAME']
+set :ssh_identity_file, "#{ENV['HOME']}/#{ENV['SSH_KEY_FILE']}"
+
+# Remote 서버에 대해 배포 환경변수 설정
+set :rails_env, "production"
+set :stage, :production
+
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -6,7 +18,7 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
+server fetch(:ssh_host_name), user: fetch(:ssh_user), port: 22, roles: [:web, :app, :db], primary: true
 
 
 # role-based syntax
@@ -21,6 +33,8 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
+
+set :deploy_to, "/home/#{fetch(:ssh_user)}/#{fetch(:application)}"
 
 
 # Configuration
@@ -46,7 +60,14 @@
 #    forward_agent: false,
 #    auth_methods: %w(password)
 #  }
-#
+
+## SSH Remote 설정 (서버 아이디 및 pem Key 경로 설정)
+set :ssh_options, {
+  keys: [fetch(:ssh_identity_file)],
+  forward_agent: true,
+  user: fetch(:ssh_user),
+}
+
 # The server-based syntax can be used to override options:
 # ------------------------------------
 # server "example.com",
