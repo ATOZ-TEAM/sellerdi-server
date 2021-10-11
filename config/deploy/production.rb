@@ -1,6 +1,8 @@
 # customized setup
 # ======================
 
+puts "\n\n\n\n\n#{ENV['SSH_HOST_NAME']}\n\n\n\n\n"
+
 set :ssh_host_name, ENV['SSH_HOST_NAME']
 set :ssh_user, ENV['SSH_USER_NAME']
 set :ssh_identity_file, "#{ENV['HOME']}/#{ENV['SSH_KEY_FILE']}"

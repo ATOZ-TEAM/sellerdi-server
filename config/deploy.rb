@@ -42,6 +42,7 @@ append :linked_files, *[
   # dotenv files
   ".env",
   ".env.staging",
+  ".env.production",
 ]
 
 # Default value for linked_dirs is []
@@ -59,6 +60,7 @@ set :assets_manifests, lambda { # Tell Capistrano-Rails how to find the Webpacke
 
 # Only attempt migration if db/migrate changed - not related to Webpacker, but a nice thing
 set :conditionally_migrate, true
+set :passenger_restart_with_touch, true
 
 
 # Default value for default_env is {}
