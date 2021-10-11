@@ -4,6 +4,10 @@ Dotenv.load(".env.#{current_env}", '.env')
 
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
+set :rbenv_type, :user
+set :rbenv_ruby, File.read('.ruby-version').strip.gsub('ruby-', '')
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
 
 set :application, "sellerdi-server"
 set :repo_url, "git@github.com:ATOZ-TEAM/sellerdi-server.git"
@@ -58,8 +62,9 @@ set :assets_manifests, lambda { # Tell Capistrano-Rails how to find the Webpacke
   [release_path.join('public', fetch(:assets_prefix), 'manifest.json*')]
 }
 
+# set :migration_role, :app
 # Only attempt migration if db/migrate changed - not related to Webpacker, but a nice thing
-set :conditionally_migrate, true
+set :conditionally_migrate, !ENV['SKIP_MIGRATE']
 set :passenger_restart_with_touch, true
 
 
@@ -83,6 +88,17 @@ namespace :deploy do
           upload!(filepath, "#{shared_path}/#{filepath}") unless test("[ -f #{shared_path}/#{filepath} ]")
         end
         fetch(:linked_files).each { |file| file_uploader.call(file) }
+      end
+    end
+  end
+
+  desc 'Runs any rake task, cap deploy:rake task=db:rollback'
+  task rake: [:set_rails_env] do
+    on release_roles([:db]) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, ENV['task']
+        end
       end
     end
   end
